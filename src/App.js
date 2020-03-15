@@ -1,5 +1,9 @@
 import React from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Navbar from './components/Navbar';
+import { breakPoints } from './config/config';
+import SectoinFactory from './components/sections/SectionFactory';
+import Landing from './components/Landing';
 
 const Layout = styled.div`
   max-width: 1024px;
@@ -8,32 +12,79 @@ const Layout = styled.div`
 `;
 
 const theme = {
+  backgroundColor: '#393939',
   navBarBackgroundColor: '#FFFDFC',
   fontFamily: '"Noto Sans TC", sans-serif',
 };
 
 
+const ContentWrapper = styled.div`
+  max-width: 768px;
+  margin: 0 auto;
+`
+
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #F8F5F8;
-    color: #424242;
+    background-color: ${props => props.theme.backgroundColor};
+    color: white;
     font-family: ${props => props.theme.fontFamily};
-    width: 100%;
+    margin: 0;
     overflow-x: hidden;
+    h1 {
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 69px;
+      color: #F0D500;
+      text-align: left;
+      @media (max-width: ${breakPoints.maxTabelt}) {
+        font-size: 40px;
+        line-height: 57px;
+        text-align: center;
+      }
+    }
+    h2 {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 51px;
+      color: white;
+      text-align: left;
+      @media (max-width: ${breakPoints.maxTabelt}) {
+        font-size: 30px;
+        line-height: 44px;
+        text-align: center;
+      }
+    }
+    h3 {
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 45px;
+      color: white;
+      text-align: left;
+      @media (max-width: ${breakPoints.maxTabelt}) {
+        font-size: 24px;
+        line-height: 38px;
+        text-align: center;
+      }
+    }
+    p {
+      line-height: 1.6em;
+      font-size: 18px;
+      margin: 40px 0;
+    }
     a {
       &:link {
-        color: #424242;
+        color: white;
         text-decoration: none;
         border-bottom: 1px solid transparent;
         transition: 0.3s;
       }
       &:hover {
-        color: #424242;
+        color: white;
         border-bottom: 1px solid #b3b3b3;
         transition: 0.3s;
       }
       &:visited {
-        color: #424242;
+        color: white;
       }
     }
     p {
@@ -51,8 +102,12 @@ function App() {
     <ThemeProvider
       theme={theme}
     >
+      <Navbar />
+      <Landing />
       <Layout>
-        <div>test</div>
+        <ContentWrapper>
+          <SectoinFactory />
+        </ContentWrapper>
       </Layout>
       <GlobalStyle />
     </ThemeProvider>
