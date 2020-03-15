@@ -2,8 +2,13 @@ import React from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Navbar from './components/Navbar';
 import { breakPoints } from './config/config';
-import SectoinFactory from './components/sections/SectionFactory';
+import {
+  SectionOne,
+  SectionTwo,
+  SectionThree,
+} from './components/sections/SectionFactory';
 import Landing from './components/Landing';
+import Sidebar from './components/sidebar/Sidebar';
 
 const Layout = styled.div`
   max-width: 1024px;
@@ -97,6 +102,21 @@ const GlobalStyle = createGlobalStyle`
 
 const people = ['卓冠齊、吳亭霓、簡毅慧、曾芯敏、曾涵郁'];
 
+const anchors = [
+  {
+    id: 'first-stop',
+    label: '第一站',
+  },
+  {
+    id: 'second-stop',
+    label: '第二站',
+  },
+  {
+    id: 'third-stop',
+    label: '第三站',
+  },
+]
+
 function App() {
   return (
     <ThemeProvider
@@ -106,7 +126,14 @@ function App() {
       <Landing />
       <Layout>
         <ContentWrapper>
-          <SectoinFactory />
+          <Sidebar
+            anchors={anchors}
+          >
+            <SectionOne />
+            <SectionTwo />
+            <SectionThree />
+            <div>test footer</div>
+          </Sidebar>
         </ContentWrapper>
       </Layout>
       <GlobalStyle />

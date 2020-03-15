@@ -47,6 +47,7 @@ const SectionPrototype = memo(({ data }) => {
     if (block.type === blockTypes.narration) {
       return (
         <Narration
+          key={`${block.type}_${index}`}
           narrationSrc={narrationSrc}
         />
       )

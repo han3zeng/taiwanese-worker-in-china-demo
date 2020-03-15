@@ -79,8 +79,8 @@ const Landing = () => {
         controls
         preload="auto"
         loop
-        mute
-        autoplay
+        mute="true"
+        autoPlay
       >
         <source
           src={''}
