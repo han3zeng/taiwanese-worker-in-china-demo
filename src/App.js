@@ -21,10 +21,13 @@ import {
 
 
 const Layout = styled.div`
+  padding: 0 40px 0 40px;
+`;
+
+const FooterLayout = styled.div`
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 30px 0 30px;
-`;
+`
 
 const theme = {
   backgroundColor: '#393939',
@@ -34,7 +37,6 @@ const theme = {
 
 
 const ContentWrapper = styled.div`
-  max-width: 768px;
   margin: 0 auto;
 `
 
@@ -130,13 +132,15 @@ function App() {
             <SectionFour />
           </Sidebar>
         </ContentWrapper>
-        <People
-          data={people}
-        />
-        <Related
-          data={relatedData}
-          title="延伸閱讀"
-        />
+        <FooterLayout>
+          <People
+            data={people}
+          />
+          <Related
+            data={relatedData}
+            title="延伸閱讀"
+          />
+        </FooterLayout>
       </Layout>
       <GlobalStyle />
     </ThemeProvider>

@@ -5,7 +5,8 @@ import FullScreenImage from '../FullScreenImage';
 import Narration from '../Narration';
 
 const Container = styled.div`
-  margin: 90px 0;
+  margin: 90px auto;
+  max-width: 768px;
 `;
 
 const SectionPrototype = memo(({ data }) => {

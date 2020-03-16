@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Anchors from './Anchors';
 import _get from 'lodash/get';
+import { breakPoints } from '../../config/config';
 
 const _ = {
   get: _get,
@@ -20,6 +21,9 @@ const AnchorTrack = styled.aside`
   right: -10px;
   top: 0;
   height: 100%;
+  @media (max-width: ${breakPoints.minTablet}) {
+    right: -20px;
+  }
 `;
 
 
