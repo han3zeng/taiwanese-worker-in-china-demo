@@ -8,28 +8,27 @@ const _ = {
 }
 
 const Conatiner = styled.div`
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+  position: sticky;
   z-index: 5;
+  padding-bottom: 30px;
+  bottom: 30px;
 `;
 
 const AnchorsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative;
   > div {
     margin-bottom: 10px;
   }
 `;
 
 const AnchorWrapper = styled.div`
-  padding: 0 10px;
   cursor: pointer;
 `;
 
 const AnchorMask = styled.div`
-  width: 100px;
+  width: 90px;
   overflow: hidden;
   display: flex;
   justify-content: flex-end;
@@ -48,6 +47,7 @@ const Anchor = styled.div`
   background-color: ${props => props.current ? '#F5AE27' : 'white'};
   cursor: pointer;
   position: relative;
+  transition: background-color 0.3s linear;
   &:before {
     display: flex;
     padding: 0 10px;
@@ -62,6 +62,18 @@ const Anchor = styled.div`
     transition-duration: 0.3s;
   }
 `;
+
+const IconWrapper = styled.div`
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  > img {
+    width: 100%;
+  }
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 120%);
+`
 
 function Anchors({
   data,
@@ -104,11 +116,25 @@ function Anchors({
     )
   });
 
+  const Icon = () => {
+    const module = data.find((entity, index) => entity.id === currentModuleId)
+    if (module) {
+      return (
+        <IconWrapper>
+          <img src={_.get(module, 'iconSrc', null)} alt={`module_${currentModuleId}_icon`} />
+        </IconWrapper>
+      )
+    }
+    return null;
+  }
+
+
 
   return (
     <Conatiner>
       <AnchorsContainer>
         {AnchorContents}
+        <Icon />
       </AnchorsContainer>
     </Conatiner>
   )

@@ -6,14 +6,24 @@ import {
   SectionOne,
   SectionTwo,
   SectionThree,
+  SectionFour,
 } from './components/sections/SectionFactory';
 import Landing from './components/Landing';
 import Sidebar from './components/sidebar/Sidebar';
+import People from './components/People.js';
+import Related from './components/Related.js';
+import {
+  relatedData,
+  people,
+  anchors,
+} from './editor/text.js';
+
+
 
 const Layout = styled.div`
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 20px 0 20px;
+  padding: 0 30px 0 30px;
 `;
 
 const theme = {
@@ -100,22 +110,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const people = ['卓冠齊、吳亭霓、簡毅慧、曾芯敏、曾涵郁'];
 
-const anchors = [
-  {
-    id: 'first-stop',
-    label: '第一站',
-  },
-  {
-    id: 'second-stop',
-    label: '第二站',
-  },
-  {
-    id: 'third-stop',
-    label: '第三站',
-  },
-]
 
 function App() {
   return (
@@ -123,18 +118,25 @@ function App() {
       theme={theme}
     >
       <Navbar />
-      <Landing />
       <Layout>
         <ContentWrapper>
+          <Landing />
           <Sidebar
             anchors={anchors}
           >
             <SectionOne />
             <SectionTwo />
             <SectionThree />
-            <div>test footer</div>
+            <SectionFour />
           </Sidebar>
         </ContentWrapper>
+        <People
+          data={people}
+        />
+        <Related
+          data={relatedData}
+          title="延伸閱讀"
+        />
       </Layout>
       <GlobalStyle />
     </ThemeProvider>

@@ -14,7 +14,7 @@ const BackgroundImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
+  z-index: 6;
 `
 
 const CatchPhrase = styled.div`

@@ -5,6 +5,11 @@ import testImageOne from '../assets/test01.jpg';
 import testImageTwo from '../assets/test02.jpg';
 import testImageThree from '../assets/test03.jpg';
 
+import personOneIconSrc from '../assets/person_one_icon.svg';
+import personTwoIconSrc from '../assets/person_two_icon.svg';
+import personThreeIconSrc from '../assets/person_three_icon.svg';
+import personFourIconSrc from '../assets/person_four_icon.svg';
+
 const Highlight = styled.div`
   display: inline;
   background: linear-gradient(0, #FFEA46 50%, ${props => props.theme.backgroundColor} 50%);
@@ -185,6 +190,48 @@ const contentSectionThree = [
 ]
 
 
+const contentSectionFour = [
+  generateContentBlock({
+    type: blockTypes.backgoundImage,
+    backgroundImageSrc: testImageOne,
+    bgCatchPhrases: {
+      one: '結論',
+      two: null,
+    },
+  }),
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: `2020春天，一場意料之外的疫災，在中國工作的台灣人，脫離原本預期的軌道，提前遭遇留下或離開的轉折。`,
+  }),
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: ` 選擇留下的人，要面臨幾個月內出不了城、回不了台灣的長期抗戰。轉身離開的，需要有放下一切、重新開始的勇氣。是搬回台灣重新開始，或繼續奮鬥等待下一波榮景，他們都必須思考，未來的生存之道。 `,
+  }),
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: `超過40萬人的決定，牽動中國復工的節奏，也影響台灣人西進就業的腳步。儘管官方疫情通報顯示，湖北省外的新增病例已大幅減少，最終台幹還是得用腳投票，決定是否買單。`,
+  }),
+]
+
+const contentLandingSection = [
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: '中國加緊復工腳步，習近平23日發表談話，其中要求「推動企業復工復產」，許多企業也大力協調員工回到崗位，許多在對岸工作的台幹，在主管聲聲催促下，面臨保性命還是保工作的抉擇，他們究竟該何去何從？ ',
+  }),
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: '「他們現在就是壓著我們趕快復工。」30歲的均豪（化名），在中國一間供應蘋果手機配件的港商工作，一月回彰化老家過年後，至今仍在台灣。公司在深圳的工廠已經開工三週了，身為技術經理的他，卻遲遲無法確定該買哪一天的機票回去。',
+  }),
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: '根據行政院主計處統計，2018年赴中國大陸工作的台灣人達40萬4千人。全台超過40萬的台幹、台商，其中有許多人像均豪一樣，因為中國新冠肺炎疫情，滯留在家，尚未回到工作崗位。 ',
+  }),
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: '疫情態勢不明朗的狀況下，年節後上海、江蘇、廣東等多個省市規定，2月9日24時以前不得復工。2月10日開始，企業、工廠急需回穩的人力需求湧現，許多台幹、台商陷入「保住生命還是保住飯碗」的兩難。他們如何在夾縫中抉擇、思考生涯的下一步？',
+  }),
+]
+
 const relatedData = [{
     title: '港學者：武漢肺炎1死　可能代表百人感染',
     date: '2020/03/01',
@@ -229,10 +276,72 @@ const relatedData = [{
   },
 ]
 
+const people = [
+  {
+    title: '製作人',
+    name: '卓冠齊',
+  },
+  {
+    title: '企劃',
+    name: '簡毅慧',
+  },
+  {
+    title: '採訪',
+    name:  '伍芬婕',
+  },
+  {
+    title: '文字',
+    name:  '伍芬婕、簡毅慧',
+  },
+  {
+    title: '影音製作',
+    name: '許家嘉',
+  },
+  {
+    title: '網頁設計',
+    name: '曾芯敏',
+  },
+  {
+    title: '網頁工程',
+    name: '曾涵郁',
+  },
+  {
+    title: '社群行銷',
+    name: 'Nagao Kunaw',
+  },
+];
+
+const anchors = [
+  {
+    id: 'first-stop',
+    label: '第一站',
+    iconSrc: personOneIconSrc,
+  },
+  {
+    id: 'second-stop',
+    label: '第二站',
+    iconSrc: personTwoIconSrc,
+  },
+  {
+    id: 'third-stop',
+    label: '第三站',
+    iconSrc: personThreeIconSrc,
+  },
+  {
+    id: 'fourth-stop',
+    label: '總結',
+    iconSrc: personFourIconSrc,
+  },
+]
+
 export {
   contentSectionOne,
   contentSectionTwo,
   contentSectionThree,
+  contentSectionFour,
+  contentLandingSection,
   blockTypes,
-  relatedData
+  relatedData,
+  people,
+  anchors,
 }

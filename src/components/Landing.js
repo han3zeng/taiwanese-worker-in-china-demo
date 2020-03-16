@@ -1,5 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import SectionPrototype from './sections/SectionPrototype';
+import { contentLandingSection } from '../editor/text';
 
 const Container = styled.div`
   width: 100%;
@@ -8,6 +10,18 @@ const Container = styled.div`
   > video {
     width: 100%;
     outline: none;
+  }
+`;
+
+const VideoWrapper = styled.div`
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  > video {
+    width: 100%;
   }
 `;
 
@@ -75,23 +89,27 @@ const vSrc = 'https://storage.googleapis.com/twreporter-multimedia/videos/201612
 const Landing = () => {
   return (
     <Container>
-      <video
-        controls
-        preload="auto"
-        loop
-        mute="true"
-        autoPlay
-      >
-        <source
-          src={''}
-          type="video/webm"
-        />
-        <source
-          src={vSrc}
-          type="video/mp4"
-        />
-        Your browser does not support the video tag
-      </video>
+      <VideoWrapper>
+        <video
+          controls
+          preload="auto"
+          loop
+          mute="true"
+        >
+          <source
+            src={''}
+            type="video/webm"
+          />
+          <source
+            src={vSrc}
+            type="video/mp4"
+          />
+          Your browser does not support the video tag
+        </video>
+      </VideoWrapper>
+      <SectionPrototype
+        data={contentLandingSection}
+      />
       <ArrowContainer>
         <Arrow
           first

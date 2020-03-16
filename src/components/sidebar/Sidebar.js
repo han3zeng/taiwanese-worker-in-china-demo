@@ -9,6 +9,19 @@ const _ = {
   get: _get,
 }
 
+const Container = styled.div`
+  position: relative;
+`
+
+const AnchorTrack = styled.aside`
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  right: -10px;
+  top: 0;
+  height: 100%;
+`;
+
 
 function Sidebar ({
   children,
@@ -27,7 +40,6 @@ function Sidebar ({
   let currentModuleId = null;
   let anchorsNode = null;
   let setModule = null;
-  let firstModuleId = null;
 
 
   const forwardSetModule = (fn) => {
@@ -41,8 +53,14 @@ function Sidebar ({
     currentModuleId = nextModuleId;
   }
 
-  const onLeaveHandler = (onLeaveModuleId) => {
-    if (onLeaveModuleId === firstModuleId) {
+  const onLeaveHandler = (onLeaveModuleId, props) => {
+    const { currentPosition } = props;
+    const firstModuleId = _.get(anchors, `[0].id`, null);
+    const lastModuleId = _.get(anchors, `[${anchors.length - 1}].id`, null);
+
+    if (onLeaveModuleId === firstModuleId && currentPosition === 'below') {
+      setModule(null);
+    } else if (onLeaveModuleId === lastModuleId && currentPosition === 'above') {
       setModule(null);
     }
   }
@@ -61,8 +79,10 @@ function Sidebar ({
     if (window && node) {
       event.preventDefault();
       // To trigger onLeave of waypoint, we need plus 1
+      let target = window.pageYOffset + node.getBoundingClientRect().top;
+      // node.offsetTop
       window.scrollTo({
-        top: node.offsetTop + 1,
+        top: target + 1,
         behavior: 'smooth'
       });
     }
@@ -70,17 +90,14 @@ function Sidebar ({
 
   const Contents = modules.map((module, index) => {
     const moduleId = _.get(anchors, `${index}.id`, `side_bar_module_${index}`);
-    if (index === 0) {
-      firstModuleId = moduleId;
-    }
     return (
       <Waypoint
         key={moduleId}
-        onLeave={() => { onLeaveHandler(moduleId) }}
+        onLeave={(props) => { onLeaveHandler(moduleId, props) }}
         onEnter={() => { onEnterHandler(moduleId) }}
         fireOnRapidScroll
-        topOffset="4%"
-        bottomOffset={(index + 1) === modules.length ? '50%' : '95%'}
+        topOffset={(index + 1) === modules.length ? '95%%' : '4%'}
+        bottomOffset={(index + 1) === modules.length ? '4%' : '95%'}
       >
         <div
           id={moduleId}
@@ -94,14 +111,30 @@ function Sidebar ({
 
   return (
     <Fragment>
-      <Anchors
-        handleClickAnchor={onClickAnchorHandler}
-        data={anchors}
-        forwardSetModule={forwardSetModule}
-      />
-      {Contents}
+      <Container>
+        <main>
+          {Contents}
+        </main>
+        <AnchorTrack>
+          <Anchors
+            handleClickAnchor={onClickAnchorHandler}
+            data={anchors}
+            forwardSetModule={forwardSetModule}
+          />
+        </AnchorTrack>
+      </Container>
     </Fragment>
   )
+//   return (
+//     <Fragment>
+//       {Contents}
+//       <Anchors
+//         handleClickAnchor={onClickAnchorHandler}
+//         data={anchors}
+//         forwardSetModule={forwardSetModule}
+//       />
+//     </Fragment>
+//   )
 }
 
 Sidebar.defaultProps = {

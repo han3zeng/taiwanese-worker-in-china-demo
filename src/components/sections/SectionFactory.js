@@ -1,23 +1,6 @@
 import React, { memo, Fragment } from 'react';
 import SectionPrototype from './SectionPrototype';
-import { contentSectionOne, contentSectionTwo, contentSectionThree } from '../../editor/text';
-//
-// const SectoinFactory = memo(() => {
-//   return (
-//     <Fragment>
-//       <SectionPrototype
-//         data={contentSectionOne}
-//       />
-//       <SectionPrototype
-//         data={contentSectionTwo}
-//       />
-//       <SectionPrototype
-//         data={contentSectionThree}
-//       />
-//     </Fragment>
-//   )
-// })
-
+import { contentSectionOne, contentSectionTwo, contentSectionThree, contentSectionFour } from '../../editor/text';
 
 const SectionOne = () => {
   return (
@@ -43,8 +26,17 @@ const SectionThree = () => {
   );
 }
 
+const SectionFour = () => {
+  return (
+    <SectionPrototype
+      data={contentSectionFour}
+    />
+  );
+}
+
 export {
   SectionOne,
   SectionTwo,
   SectionThree,
+  SectionFour,
 };
