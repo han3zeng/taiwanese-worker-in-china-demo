@@ -7,6 +7,8 @@ import Landing from './components/Landing';
 import Sidebar from './components/sidebar/Sidebar';
 import People from './components/People.js';
 import Related from './components/Related.js';
+import Footer from './components/Footer';
+
 import {
   relatedData,
   people,
@@ -87,12 +89,10 @@ const GlobalStyle = createGlobalStyle`
       &:link {
         color: white;
         text-decoration: none;
-        border-bottom: 1px solid transparent;
         transition: 0.3s;
       }
       &:hover {
         color: white;
-        border-bottom: 1px solid #b3b3b3;
         transition: 0.3s;
       }
       &:visited {
@@ -165,6 +165,7 @@ function App() {
             title="延伸閱讀"
           />
         </FooterLayout>
+        <Footer />
       </Layout>
       <GlobalStyle />
     </ThemeProvider>

@@ -1,6 +1,6 @@
 import React, { useEffect, memo } from 'react';
 import styled from 'styled-components';
-import ptsIconSrc from '../assets/pts_logal.png';
+import ptsIconSrc from '../assets/pts_logo_top_left.svg';
 import { FacebookShare, LineShare } from './ShareButtons';
 
 const height = '80px';
