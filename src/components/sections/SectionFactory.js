@@ -1,42 +1,15 @@
 import React, { memo, Fragment } from 'react';
 import SectionPrototype from './SectionPrototype';
-import { contentSectionOne, contentSectionTwo, contentSectionThree, contentSectionFour } from '../../editor/text';
+import { contentSections } from '../../editor/text';
 
-const SectionOne = () => {
-  return (
+const Components = contentSections.map((content) => {
+  return ({ hasAutoPlay, videoInitialization }) => (
     <SectionPrototype
-      data={contentSectionOne}
+      data={content}
+      hasAutoPlay={hasAutoPlay}
+      videoInitialization={videoInitialization}
     />
   );
-}
+})
 
-const SectionTwo = () => {
-  return (
-    <SectionPrototype
-      data={contentSectionTwo}
-    />
-  );
-}
-
-const SectionThree = () => {
-  return (
-    <SectionPrototype
-      data={contentSectionThree}
-    />
-  );
-}
-
-const SectionFour = () => {
-  return (
-    <SectionPrototype
-      data={contentSectionFour}
-    />
-  );
-}
-
-export {
-  SectionOne,
-  SectionTwo,
-  SectionThree,
-  SectionFour,
-};
+export default Components;

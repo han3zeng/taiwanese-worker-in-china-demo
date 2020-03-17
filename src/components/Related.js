@@ -67,12 +67,12 @@ const TextWrapper = styled.div`
 `
 
 const Category = styled.div`
-  color: #451458;
+  color: white;
   font-size: 14px;
 `;
 
 const GridTitle = styled.div`
-  color: #424242;
+  color: white;
   font-size: 16px;
   font-weight: bold;
 `;
@@ -83,10 +83,9 @@ const Date = styled.span`
   right: 0;
 `
 
-const Title = styled.h3`
-  font-size: 20px;
-  font-weight: bold;
-  color: #424242;
+const Title = styled.h4`
+  font-size: 22px;
+  color: white;
   text-align: center;
   margin-bottom: 30px;
 `

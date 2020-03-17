@@ -1,13 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Navbar from './components/Navbar';
 import { breakPoints } from './config/config';
-import {
-  SectionOne,
-  SectionTwo,
-  SectionThree,
-  SectionFour,
-} from './components/sections/SectionFactory';
+import Components from './components/sections/SectionFactory';
 import Landing from './components/Landing';
 import Sidebar from './components/sidebar/Sidebar';
 import People from './components/People.js';
@@ -17,7 +12,7 @@ import {
   people,
   anchors,
 } from './editor/text.js';
-
+import Mask from './components/Mask';
 
 
 const Layout = styled.div`
@@ -35,7 +30,6 @@ const theme = {
   fontFamily: '"Noto Sans TC", sans-serif',
 };
 
-
 const ContentWrapper = styled.div`
   margin: 0 auto;
 `
@@ -47,6 +41,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${props => props.theme.fontFamily};
     margin: 0;
     overflow-x: hidden;
+    width: 100%;
     h1 {
       font-weight: 700;
       font-size: 48px;
@@ -115,10 +110,42 @@ const GlobalStyle = createGlobalStyle`
 
 
 function App() {
+  const [ hasAutoPlay, setAutoPlayState ] = useState(null);
+  let videos = [];
+
+  function setAutoPlay(autoPlayState) {
+    setAutoPlayState(autoPlayState);
+    videos.forEach((video) => {
+      video.pause();
+      video.muted = false;
+    })
+  }
+
+  function videoInitialization (videoNode) {
+    if (videoNode) {
+      videos.push(videoNode);
+    }
+  }
+
+  function renderSections({
+    hasAutoPlay
+  }) {
+    return Components.map((Component, index) => (
+      <Component
+        key={`section_component_${index}`}
+        hasAutoPlay={hasAutoPlay}
+        videoInitialization={videoInitialization}
+      />
+    ));
+  }
+
   return (
     <ThemeProvider
       theme={theme}
     >
+      <Mask
+        setAutoPlay={setAutoPlay}
+      />
       <Navbar />
       <Layout>
         <ContentWrapper>
@@ -126,10 +153,7 @@ function App() {
           <Sidebar
             anchors={anchors}
           >
-            <SectionOne />
-            <SectionTwo />
-            <SectionThree />
-            <SectionFour />
+            {renderSections({ hasAutoPlay })}
           </Sidebar>
         </ContentWrapper>
         <FooterLayout>

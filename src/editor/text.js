@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components';
 
 import testImageOne from '../assets/test01.jpg';
@@ -10,9 +11,11 @@ import personTwoIconSrc from '../assets/person_two_icon.svg';
 import personThreeIconSrc from '../assets/person_three_icon.svg';
 import personFourIconSrc from '../assets/person_four_icon.svg';
 
+import poster from '../assets/poster.png';
+
 const Highlight = styled.div`
   display: inline;
-  background: linear-gradient(0, #FFEA46 50%, ${props => props.theme.backgroundColor} 50%);
+  background: linear-gradient(0, rgba(255, 234, 70, 0.4) 50%, #393939 50%);
 `
 
 const blockTypes = Object.freeze({
@@ -44,6 +47,7 @@ const generateContentBlock = ({
   narrationSrc = {
     mp4: null,
     webm: null,
+    poster: null,
   },
 }) => {
   const block = {
@@ -65,13 +69,11 @@ const createLink = ({
 }
 
 
-const createHighlight = ({
-  text=''
-}) => (
+const createHighlight = (text) => ReactDOMServer.renderToString((
   <Highlight>
     {text}
   </Highlight>
-);
+));
 
 const contentSectionOne = [
   generateContentBlock({
@@ -107,6 +109,7 @@ const contentSectionOne = [
     narrationSrc: {
       mp4: 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4',
       webm: null,
+      poster: poster,
     },
   }),
 ]
@@ -146,6 +149,7 @@ const contentSectionTwo = [
     narrationSrc: {
       mp4: 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4',
       webm: null,
+      poster: poster,
     },
   }),
 ]
@@ -185,6 +189,7 @@ const contentSectionThree = [
     narrationSrc: {
       mp4: 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4',
       webm: null,
+      poster: poster,
     },
   }),
 ]
@@ -334,11 +339,15 @@ const anchors = [
   },
 ]
 
-export {
+const contentSections = [
   contentSectionOne,
   contentSectionTwo,
   contentSectionThree,
   contentSectionFour,
+];
+
+export {
+  contentSections,
   contentLandingSection,
   blockTypes,
   relatedData,

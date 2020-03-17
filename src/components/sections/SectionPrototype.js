@@ -9,7 +9,10 @@ const Container = styled.div`
   max-width: 768px;
 `;
 
-const SectionPrototype = memo(({ data }) => {
+const SectionPrototype = memo(({ data, hasAutoPlay, videoInitialization }) => {
+  function createMarkup(content) {
+    return {__html: `${content}`};
+  }
   const Content = data.map((block, index) => {
     const {
       type,
@@ -40,9 +43,8 @@ const SectionPrototype = memo(({ data }) => {
       return (
         <p
           key={`${block.type}_${index}`}
-        >
-          {content}
-        </p>
+          dangerouslySetInnerHTML={createMarkup(content)}
+        />
       )
     }
     if (block.type === blockTypes.narration) {
@@ -50,6 +52,8 @@ const SectionPrototype = memo(({ data }) => {
         <Narration
           key={`${block.type}_${index}`}
           narrationSrc={narrationSrc}
+          hasAutoPlay={hasAutoPlay}
+          videoInitialization={videoInitialization}
         />
       )
     }
