@@ -59,6 +59,7 @@ class Narration extends PureComponent {
     this.onClickVideoHandler = this._onClickVideoHandler.bind(this);
     this.onEnterHandler = this._onEnterHandler.bind(this);
     this.onLeaveHandler = this._onLeaveHandler.bind(this);
+    this._onEnterTime = 0;
   }
 
   _videoHandler({
@@ -83,6 +84,7 @@ class Narration extends PureComponent {
   }
 
   _onLeaveHandler(e) {
+    this._onEnterTime = 0;
     const { hasAutoPlay } = this.props;
     if (hasAutoPlay) {
       this._videoHandler({
@@ -92,11 +94,17 @@ class Narration extends PureComponent {
   }
 
   _onEnterHandler(e) {
+    this._onEnterTime = Date.now();
     const { hasAutoPlay } = this.props;
     if (hasAutoPlay) {
-      this._videoHandler({
-        isPlaying: true,
-      })
+      // prevent video from playing by rapidscroll
+      setTimeout(() => {
+        if (this._onEnterTime > 0) {
+          this._videoHandler({
+            isPlaying: true,
+          })
+        }
+      }, 1000);
     }
   }
 
@@ -116,7 +124,6 @@ class Narration extends PureComponent {
   componentDidMount() {
     const { videoInitialization } = this.props;
     if (this.video) {
-      console.log('didmount')
       videoInitialization(this.video);
     }
   }
