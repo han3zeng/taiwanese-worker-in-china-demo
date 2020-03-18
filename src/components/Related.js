@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const minDesktop = '925px';
@@ -128,4 +128,4 @@ const Related = ({ data, title }) => {
   )
 }
 
-export default Related;
+export default memo(Related);

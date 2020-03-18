@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import SectionPrototype from './sections/SectionPrototype';
 import { contentLandingSection } from '../editor/text';
+import poster from '../assets/poster.png';
+import Video from './Video';
 
 const Container = styled.div`
   width: 100%;
@@ -86,26 +88,22 @@ const Arrow = styled.div`
 
 const vSrc = 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4';
 
-const Landing = () => {
+const Landing = ({
+  hasAutoPlay,
+  videoInitialization,
+}) => {
   return (
     <Container>
       <VideoWrapper>
-        <video
-          controls
-          preload="auto"
-          loop
-          mute="true"
-        >
-          <source
-            src={''}
-            type="video/webm"
-          />
-          <source
-            src={vSrc}
-            type="video/mp4"
-          />
-          Your browser does not support the video tag
-        </video>
+        <Video
+          narrationSrc={{
+            mp4: 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4',
+            webm: null,
+            poster,
+          }}
+          hasAutoPlay={hasAutoPlay}
+          videoInitialization={videoInitialization}
+        />
       </VideoWrapper>
       <SectionPrototype
         data={contentLandingSection}

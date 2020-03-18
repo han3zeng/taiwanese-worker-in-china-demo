@@ -1,10 +1,7 @@
-import React, { useEffect, memo, Fragment, PureComponent } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import HumanIcon from './HumanIcon';
-import PlayIconSrc from '../assets/play.png';
-import PauseIconSrc from '../assets/pause.png';
-import { Waypoint } from 'react-waypoint'
-
+import Video from './Video';
 
 const TitleSection = styled.div`
   margin: 0 auto;
@@ -30,147 +27,21 @@ const NarrationContainer = styled.div`
   margin: 0 auto;
 `;
 
-const VideoContainer = styled.div`
-  position: relative;
-  cursor: pointer;
-`
-
-const Video = styled.video`
-  width: 100%;
-`
-
-const Button = styled.img`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`
-
-//  TODO: Will have compicated Video later
-//  chechk on this: https://github.com/twreporter/static-fe-boilerplate/blob/master/unjust-imprisonment/src/components/video.js
-// https://www.html5rocks.com/en/tutorials/video/basics/
-class Narration extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isPlaying: false,
-    }
-    this.video = null;
-    this.onClickVideoHandler = this._onClickVideoHandler.bind(this);
-    this.onEnterHandler = this._onEnterHandler.bind(this);
-    this.onLeaveHandler = this._onLeaveHandler.bind(this);
-    this._onEnterTime = 0;
-  }
-
-  _videoHandler({
-    isPlaying,
-  }) {
-    if (isPlaying) {
-      this.video.play()
-        .then(() => {
-          this.setState({
-            isPlaying: true,
-          })
-        })
-        .catch((e) => {
-          console.log('e: ', e);
-        })
-    } else {
-      this.video.pause();
-      this.setState({
-        isPlaying: false,
-      })
-    }
-  }
-
-  _onLeaveHandler(e) {
-    this._onEnterTime = 0;
-    const { hasAutoPlay } = this.props;
-    if (hasAutoPlay) {
-      this._videoHandler({
-        isPlaying: false,
-      })
-    }
-  }
-
-  _onEnterHandler(e) {
-    this._onEnterTime = Date.now();
-    const { hasAutoPlay } = this.props;
-    if (hasAutoPlay) {
-      // prevent video from playing by rapidscroll
-      setTimeout(() => {
-        if (this._onEnterTime > 0) {
-          this._videoHandler({
-            isPlaying: true,
-          })
-        }
-      }, 1000);
-    }
-  }
-
-  _onClickVideoHandler(e) {
-    const { isPlaying: currentPlayingStatus } = this.state;
-    if (!currentPlayingStatus) {
-      this._videoHandler({
-        isPlaying: true,
-      })
-    } else {
-      this._videoHandler({
-        isPlaying: false,
-      })
-    }
-  }
-
-  componentDidMount() {
-    const { videoInitialization } = this.props;
-    if (this.video) {
-      videoInitialization(this.video);
-    }
-  }
-
-  render() {
-    const { narrationSrc } = this.props;
-    const { isPlaying } = this.state;
-    const { mp4, webm, poster } = narrationSrc;
-    return (
-      <NarrationContainer>
-        <TitleSection>
-          <HumanIcon />
-          <Header>台人內心話</Header>
-        </TitleSection>
-        <Waypoint
-          onEnter={this.onEnterHandler}
-          onLeave={this.onLeaveHandler}
-          bottomOffset="50%"
-        >
-          <VideoContainer
-            onClick={this.onClickVideoHandler}
-          >
-            <Video
-              ref={(node) => {
-                this.video = node;
-              }}
-              preload="none"
-              poster={poster}
-              autoplay
-              muted
-            >
-              <source
-                src={webm}
-                type="video/webm"
-              />
-              <source
-                src={mp4}
-                type="video/mp4"
-              />
-              Your browser does not support the video tag
-            </Video>
-            {!isPlaying && <Button src={PlayIconSrc} />}
-          </VideoContainer>
-        </Waypoint>
-      </NarrationContainer>
-    );
-  }
+const Narration = ({ narrationSrc, videoInitialization, hasAutoPlay }) => {
+  console.log('render')
+  return (
+    <NarrationContainer>
+      <TitleSection>
+        <HumanIcon />
+        <Header>台人內心話</Header>
+      </TitleSection>
+      <Video
+        narrationSrc={narrationSrc}
+        hasAutoPlay={hasAutoPlay}
+        videoInitialization={videoInitialization}
+      />
+    </NarrationContainer>
+  );
 }
 
-export default Narration;
+export default memo(Narration);

@@ -149,7 +149,10 @@ function App() {
       <Navbar />
       <Layout>
         <ContentWrapper>
-          <Landing />
+          <Landing
+            hasAutoPlay={hasAutoPlay}
+            videoInitialization={videoInitialization}
+          />
           <Sidebar
             anchors={anchors}
           >

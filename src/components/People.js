@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -28,4 +28,4 @@ const People = ({ data }) => {
   )
 };
 
-export default People;
+export default memo(People);
