@@ -184,6 +184,13 @@ class VideoComponent extends PureComponent {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { isLanding, hasAutoPlay } = this.props;
+    if (prevProps.hasAutoPlay === null && hasAutoPlay && isLanding) {
+      this._videoHandler({ isPlaying: true });
+    }
+  }
+
   render() {
     const { narrationSrc } = this.props;
     const { isPlaying } = this.state;

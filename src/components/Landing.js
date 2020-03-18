@@ -97,12 +97,13 @@ const Landing = ({
       <VideoWrapper>
         <Video
           narrationSrc={{
-            mp4: 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4',
-            webm: null,
+            mp4: 'https://d3prffu8f9hpuw.cloudfront.net/shanghai.mp4',
+            webm: 'https://d3prffu8f9hpuw.cloudfront.net/shanghai.webm',
             poster,
           }}
           hasAutoPlay={hasAutoPlay}
           videoInitialization={videoInitialization}
+          isLanding
         />
       </VideoWrapper>
       <SectionPrototype
