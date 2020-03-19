@@ -27,8 +27,7 @@ const NarrationContainer = styled.div`
   margin: 0 auto;
 `;
 
-const Narration = ({ narrationSrc, videoInitialization, hasAutoPlay }) => {
-  console.log('render')
+const Narration = ({ videoSrc, videoInitialization, hasAutoPlay }) => {
   return (
     <NarrationContainer>
       <TitleSection>
@@ -36,7 +35,7 @@ const Narration = ({ narrationSrc, videoInitialization, hasAutoPlay }) => {
         <Header>台人內心話</Header>
       </TitleSection>
       <Video
-        narrationSrc={narrationSrc}
+        videoSrc={videoSrc}
         hasAutoPlay={hasAutoPlay}
         videoInitialization={videoInitialization}
       />

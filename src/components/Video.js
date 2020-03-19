@@ -13,11 +13,25 @@ const Video = styled.video`
   width: 100%;
 `
 
-const Button = styled.img`
+const ButtonContainer = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  background-color: #E3E3E3;
+  &:after {
+    content: "";
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 21px solid #8E8E8E;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 const PlaybackContainer = styled.div`
@@ -192,9 +206,9 @@ class VideoComponent extends PureComponent {
   }
 
   render() {
-    const { narrationSrc } = this.props;
+    const { videoSrc } = this.props;
     const { isPlaying } = this.state;
-    const { mp4, webm, poster } = narrationSrc;
+    const { mp4, webm, poster } = videoSrc;
     return (
       <Waypoint
         onEnter={this.onEnterHandler}
@@ -222,7 +236,13 @@ class VideoComponent extends PureComponent {
             />
             Your browser does not support the video tag
           </Video>
-          {!isPlaying && <Button src={PlayIconSrc} />}
+          {!isPlaying && (
+            <ButtonContainer
+            >
+              <div>
+              </div>
+            </ButtonContainer>
+          )}
           <Playback
             ref={(node) => {
               this.playback = node;

@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import SectionPrototype from './sections/SectionPrototype';
 import { contentLandingSection } from '../editor/text';
+import { setup } from '../config/config';
 import poster from '../assets/poster.png';
+import ArrowIcon from '../assets/header_scroll_arrow.svg';
 import Video from './Video';
+import { chooseSrc } from '../utils';
 
 const Container = styled.div`
   width: 100%;
   box-sizing: border-box;
-  padding: 80px 0;
-  > video {
-    width: 100%;
-    outline: none;
-  }
 `;
 
 const VideoWrapper = styled.div`
@@ -22,8 +20,12 @@ const VideoWrapper = styled.div`
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  height: 100vh;
   > video {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    outline: none;
   }
 `;
 
@@ -52,8 +54,24 @@ const animation = (props) => {
   }
 };
 
+const ArrowImageContainer = styled.div`
+  position: absolute;
+  cursor: pointer;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+
+`
+
 const ArrowContainer = styled.div`
-  position: relative;
+  position: absolute;
+  z-index: 3;
+  bottom: 100px;
+  left: 50%;
+  cursor: pointer;
+  width: 33px;
+  height: 65px;
+  bottom: 17px;
 `
 
 const Arrow = styled.div`
@@ -61,10 +79,8 @@ const Arrow = styled.div`
   position: absolute;
   animation: ${props => animation(props)};
   opacity: 0;
-  left: 50%;
   top: 30px;
   transform-origin: 50% 50%;
-  transform: translate3d(-50%, -50%, 0);
   &:after, &:before {
     background: #fff;
     content: '';
@@ -86,35 +102,117 @@ const Arrow = styled.div`
   }
 `
 
-const vSrc = 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4';
+// const vSrc = 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4';
 
 const Landing = ({
   hasAutoPlay,
   videoInitialization,
 }) => {
+  let videoNode = null;
+  let articleNode = null;
+  let webmSrc = chooseSrc({
+    desktopSrc: `${setup.cdnUrlBase}/header-video-desktop.webm`,
+    mobileSrc: `${setup.cdnUrlBase}/header-video-mobile.webm`,
+  });
+  let mp4Src = chooseSrc({
+    desktopSrc: `${setup.cdnUrlBase}/header-video-desktop.mp4`,
+    mobileSrc: `${setup.cdnUrlBase}/header-video-mobile.mp4`,
+  });
+
+  useEffect(() => {
+    function throttle(fn, interval) {
+      let lastExecutedTime = null;
+      let executedInterval = null;
+      return function decorator() {
+        if (lastExecutedTime) {
+          executedInterval = Date.now() - lastExecutedTime;
+        }
+        if (!lastExecutedTime || (lastExecutedTime && (executedInterval >= interval))) {
+          fn.apply(this, arguments);
+          lastExecutedTime = Date.now();
+        }
+      }
+    }
+    const resizeHandler = () => {
+      if (videoNode) {
+        let originalSrc = videoNode.currentSrc;
+        let targetSrc = null;
+        if (originalSrc.match(/\.\w*$/)[0] === '.webm') {
+          targetSrc = chooseSrc({
+            desktopSrc: `${setup.cdnUrlBase}/header-video-desktop.webm`,
+            mobileSrc: `${setup.cdnUrlBase}/header-video-mobile.webm`,
+          });
+        } else {
+          targetSrc = chooseSrc({
+            desktopSrc: `${setup.cdnUrlBase}/header-video-desktop.mp4`,
+            mobileSrc: `${setup.cdnUrlBase}/header-video-mobile.mp4`,
+          });
+        }
+        if (videoNode.src !== targetSrc) {
+          videoNode.src = targetSrc;
+        }
+      }
+    }
+
+    window.addEventListener('resize', resizeHandler);
+
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    }
+  });
   return (
     <Container>
       <VideoWrapper>
-        <Video
-          narrationSrc={{
-            mp4: 'https://d3prffu8f9hpuw.cloudfront.net/shanghai.mp4',
-            webm: 'https://d3prffu8f9hpuw.cloudfront.net/shanghai.webm',
-            poster,
+        <video
+          autoPlay
+          loop
+          muted
+          ref={(node) => {
+            videoNode = node;
           }}
-          hasAutoPlay={hasAutoPlay}
-          videoInitialization={videoInitialization}
-          isLanding
-        />
+        >
+          <source
+            src={webmSrc}
+            type="video/webm"
+          />
+          <source
+            src={mp4Src}
+            type="video/mp4"
+          />
+        </video>
+        {/*<ArrowImageContainer>
+          <img src={ArrowIcon} alt="arrow icon at landing"/>
+        </ArrowImageContainer>*/}
+          <ArrowContainer
+            onClick={(event) => {
+              if (articleNode) {
+                event.preventDefault();
+                // To trigger onLeave of waypoint, we need plus 1
+                let marginTop = 0;
+                try {
+                  marginTop = +window.getComputedStyle(articleNode).marginTop.match(/\d*/)[0]
+                } catch(e) {
+
+                }
+                let target = window.pageYOffset + articleNode.getBoundingClientRect().top - marginTop;
+                // node.offsetTop
+                window.scrollTo({
+                  top: target + 1,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+          >
+            <Arrow
+              first
+            />
+            <Arrow />
+          </ArrowContainer>
       </VideoWrapper>
       <SectionPrototype
+        forwardRef={(node) => { articleNode = node; }}
         data={contentLandingSection}
       />
-      <ArrowContainer>
-        <Arrow
-          first
-        />
-        <Arrow />
-      </ArrowContainer>
     </Container>
   );
 }

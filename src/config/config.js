@@ -1,10 +1,15 @@
 const breakPoints = {
-  minDesktop: '1024px',
-  maxTabelt: '1023px',
-  minTablet: '768px',
-  maxMobile: '767px',
+  minDesktop: '1024',
+  maxTabelt: '1023',
+  minTablet: '415',
+  maxMobile: '414',
+}
+
+const setup = {
+  cdnUrlBase: 'https://d3prffu8f9hpuw.cloudfront.net/taiwanese-businessman',
 }
 
 export {
   breakPoints,
+  setup,
 };

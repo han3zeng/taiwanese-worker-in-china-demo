@@ -21,7 +21,7 @@ const AnchorTrack = styled.aside`
   right: -10px;
   top: 0;
   height: 100%;
-  @media (max-width: ${breakPoints.minTablet}) {
+  @media (max-width: ${breakPoints.minTablet}px) {
     right: -20px;
   }
 `;

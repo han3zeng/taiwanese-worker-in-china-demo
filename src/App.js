@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
       line-height: 69px;
       color: #F0D500;
       text-align: left;
-      @media (max-width: ${breakPoints.maxTabelt}) {
+      @media (max-width: ${breakPoints.maxTabelt}px) {
         font-size: 40px;
         line-height: 57px;
         text-align: center;
@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
       line-height: 51px;
       color: white;
       text-align: left;
-      @media (max-width: ${breakPoints.maxTabelt}) {
+      @media (max-width: ${breakPoints.maxTabelt}px) {
         font-size: 30px;
         line-height: 44px;
         text-align: center;
@@ -74,7 +74,7 @@ const GlobalStyle = createGlobalStyle`
       line-height: 45px;
       color: white;
       text-align: left;
-      @media (max-width: ${breakPoints.maxTabelt}) {
+      @media (max-width: ${breakPoints.maxTabelt}px) {
         font-size: 24px;
         line-height: 38px;
         text-align: center;

@@ -11,7 +11,11 @@ import personTwoIconSrc from '../assets/person_two_icon.svg';
 import personThreeIconSrc from '../assets/person_three_icon.svg';
 import personFourIconSrc from '../assets/person_four_icon.svg';
 
+import { setup } from '../config/config';
+
 import poster from '../assets/poster.png';
+
+const { cdnUrlBase } = setup;
 
 const Highlight = styled.div`
   display: inline;
@@ -34,17 +38,20 @@ const blockTypes = Object.freeze({
  * @param {string} block.content - text content for the block if the block is not image || backgroundImage
  * @param {string} block.backgroundImageSrc - src for background image
  * @param {Object} block.bgCatchPhrases - catchphrase inside background image
- * @param {string} block.narrationSrc - src of video of narration
+ * @param {string} block.videoSrc - src of video of narration
  */
 const generateContentBlock = ({
   type = null,
   content = null,
-  backgroundImageSrc = null,
+  backgroundImageSrc = {
+    desktop: null,
+    mobile: null,
+  },
   bgCatchPhrases = {
     one: null,
     two: null,
   },
-  narrationSrc = {
+  videoSrc = {
     mp4: null,
     webm: null,
     poster: null,
@@ -55,7 +62,7 @@ const generateContentBlock = ({
     content,
     backgroundImageSrc,
     bgCatchPhrases,
-    narrationSrc,
+    videoSrc,
   }
   return block;
 }
@@ -78,10 +85,13 @@ const createHighlight = (text) => ReactDOMServer.renderToString((
 const contentSectionOne = [
   generateContentBlock({
     type: blockTypes.backgoundImage,
-    backgroundImageSrc: testImageOne,
+    backgroundImageSrc: {
+      desktop: `${cdnUrlBase}/shenzhen-bg-desktop.jpg`,
+      mobile: `${cdnUrlBase}/shenzhen-bg-mobile.jpg`,
+    },
     bgCatchPhrases: {
-      one: '第一站：深圳',
-      two: '他與老闆的復工拉鋸戰',
+      one: null,
+      two: null,
     },
   }),
   generateContentBlock({
@@ -106,7 +116,7 @@ const contentSectionOne = [
   }),
   generateContentBlock({
     type: blockTypes.narration,
-    narrationSrc: {
+    videoSrc: {
       mp4: 'https://d3prffu8f9hpuw.cloudfront.net/shenzhen-infect.mp4',
       webm: 'https://d3prffu8f9hpuw.cloudfront.net/shenzhen-infect.webm',
       poster: poster,
@@ -146,7 +156,7 @@ const contentSectionTwo = [
   }),
   generateContentBlock({
     type: blockTypes.narration,
-    narrationSrc: {
+    videoSrc: {
       mp4: null,
       webm: 'https://d3prffu8f9hpuw.cloudfront.net/shenzhen-infect.webm',
       poster: poster,
@@ -186,7 +196,7 @@ const contentSectionThree = [
   }),
   generateContentBlock({
     type: blockTypes.narration,
-    narrationSrc: {
+    videoSrc: {
       mp4: 'https://storage.googleapis.com/twreporter-multimedia/videos/20161215200335-b40e2785cfd721ca06d7ded5a0cb6726.mp4',
       webm: null,
       poster: poster,
@@ -221,49 +231,53 @@ const contentSectionFour = [
 const contentLandingSection = [
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: '中國加緊復工腳步，習近平23日發表談話，其中要求「推動企業復工復產」，許多企業也大力協調員工回到崗位，許多在對岸工作的台幹，在主管聲聲催促下，面臨保性命還是保工作的抉擇，他們究竟該何去何從？ ',
+    content: '「我國本輪疫情高峰已經過去。」中國國家衛健委發言人米鋒12日在記者會上宣布。由於中國國內經濟下滑的壓力增加，中共中央政治局常委會在18日會後指出，各級黨政單位應積極推動企業復工復產，降低疫情帶來的損失。',
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: '「他們現在就是壓著我們趕快復工。」30歲的均豪（化名），在中國一間供應蘋果手機配件的港商工作，一月回彰化老家過年後，至今仍在台灣。公司在深圳的工廠已經開工三週了，身為技術經理的他，卻遲遲無法確定該買哪一天的機票回去。',
+    content: '年後以來一波波的復工潮，讓台幹備感壓力。',
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: '根據行政院主計處統計，2018年赴中國大陸工作的台灣人達40萬4千人。全台超過40萬的台幹、台商，其中有許多人像均豪一樣，因為中國新冠肺炎疫情，滯留在家，尚未回到工作崗位。 ',
+    content: '「就是壓著我們趕快復工。」30歲的均豪（化名），在中國一間供應蘋果手機配件的港商工作。公司在深圳的工廠早在2月17日開工，身為技術經理的他，在彰化老家過完年後，遲遲難以決定該買哪一天的機票回去。',
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: '疫情態勢不明朗的狀況下，年節後上海、江蘇、廣東等多個省市規定，2月9日24時以前不得復工。2月10日開始，企業、工廠急需回穩的人力需求湧現，許多台幹、台商陷入「保住生命還是保住飯碗」的兩難。他們如何在夾縫中抉擇、思考生涯的下一步？',
+    content: `根據行政院主計處統計，${createHighlight('2018年赴中國大陸工作的台灣人達40萬4千人。')}全台超過40萬的台幹、台商，其中有許多人像均豪一樣，因為中國新冠肺炎疫情，滯留在家，尚未回到工作崗位。`,
+  }),
+  generateContentBlock({
+    type: blockTypes.paragraph,
+    content: '企業、工廠急需回穩的人力需求湧現，許多台幹、台商陷入「保住生命還是保住飯碗」的兩難。他們如何在夾縫中抉擇、思考生涯的下一步？',
   }),
 ]
 
 const relatedData = [{
-    title: '港學者：武漢肺炎1死　可能代表百人感染',
-    date: '2020/03/01',
-    category: '全球公衛',
-    imgUrl: 'https://daf1ua3hmwh9p.cloudfront.net/news_images/468640/1583064066c.jpg',
-    externalLink: 'https://news.pts.org.tw/article/468640',
+    title: '武漢肺炎專題／戰役實錄',
+    date: '2020/02/11',
+    category: '疫情通報',
+    imgUrl: 'https://news.pts.org.tw/home_images/banner/1.jpg?v=1584439203',
+    externalLink: 'https://newmedia.pts.org.tw/chinaoutbreak/',
   },
   {
     title: '武漢封城30天，全中國開城復工待何時？',
     date: '2020/02/21',
-    category: '中國疫情',
+    category: '全球公衛',
     imgUrl: 'http://newmedia.pts.org.tw/sub-chinaoutbreak/figure.jpg',
     externalLink: 'https://newmedia.pts.org.tw/sub-chinaoutbreak/',
   },
   {
-    title: '過去1天29死為2月最少　中國專家：4月底可控制',
-    date: '2020/02/27',
-    category: '中國疫情',
-    imgUrl: 'https://daf1ua3hmwh9p.cloudfront.net/news_images/468361/1582804267v.jpg',
-    externalLink: 'https://news.pts.org.tw/article/464789',
+    title: '報導側記／中國權威發布的疫情數據迷霧',
+    date: '2020/03/04',
+    category: '疫情通報',
+    imgUrl: 'https://server.newslab.pts.org.tw/uploads/News/175/5e61ba1be7d2e.jpg',
+    externalLink: 'https://newmedia.pts.org.tw/sub-chinaoutbreak-2-/',
   },
   {
-    title: '伊朗疫情嚴峻　議員報料官方掩蓋疫情',
-    date: '2020/02/25',
-    category: '全球公衛',
-    imgUrl: 'https://daf1ua3hmwh9p.cloudfront.net/news_images/467924/1582598426r.jpg',
-    externalLink: 'https://news.pts.org.tw/article/467924',
+    title: '【P觀點】武漢肺炎疫情下，待回京的台灣中醫師',
+    date: '2020/02/27',
+    category: '國內防疫',
+    imgUrl: 'https://img.youtube.com/vi/3f0t4rxVkuA/hqdefault.jpg',
+    externalLink: 'https://newslab.pts.org.tw/video/78',
   },
   {
     title: '【P觀點】病毒專家何美鄉，武漢肺炎大解密',
@@ -273,11 +287,11 @@ const relatedData = [{
     externalLink: 'https://newslab.pts.org.tw/video/77',
   },
   {
-    title: '武漢肺炎全球逾8.5萬人確診　近60國淪陷',
-    date: '2020/02/29',
+    title: '【疫與記憶之四】義大利篇：我在佛羅倫斯，經歷世紀之疫',
+    date: '2020/03/13',
     category: '全球公衛',
-    imgUrl: 'https://news.pts.org.tw/news_images/468564/1582976537f.jpg',
-    externalLink: 'https://news.pts.org.tw/article/468564',
+    imgUrl: 'https://server.newslab.pts.org.tw/uploads/News/180/5e6b97bae9e4e.jpg',
+    externalLink: 'https://newslab.pts.org.tw/news/180',
   },
 ]
 

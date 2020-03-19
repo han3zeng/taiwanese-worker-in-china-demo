@@ -9,7 +9,7 @@ const Container = styled.div`
   max-width: 768px;
 `;
 
-const SectionPrototype = memo(({ data, hasAutoPlay, videoInitialization }) => {
+const SectionPrototype = memo(({ data, hasAutoPlay, videoInitialization, forwardRef }) => {
   function createMarkup(content) {
     return {__html: `${content}`};
   }
@@ -19,7 +19,7 @@ const SectionPrototype = memo(({ data, hasAutoPlay, videoInitialization }) => {
       content,
       backgroundImageSrc,
       bgCatchPhrases,
-      narrationSrc,
+      videoSrc,
     } = block;
     if (block.type === blockTypes.backgoundImage) {
       return (
@@ -51,7 +51,7 @@ const SectionPrototype = memo(({ data, hasAutoPlay, videoInitialization }) => {
       return (
         <Narration
           key={`${block.type}_${index}`}
-          narrationSrc={narrationSrc}
+          videoSrc={videoSrc}
           hasAutoPlay={hasAutoPlay}
           videoInitialization={videoInitialization}
         />
@@ -61,7 +61,13 @@ const SectionPrototype = memo(({ data, hasAutoPlay, videoInitialization }) => {
   })
 
   return (
-    <Container>
+    <Container
+      ref={(node) => {
+        if (forwardRef && node) {
+          forwardRef(node);
+        }
+      }}
+    >
       {Content}
     </Container>
   )

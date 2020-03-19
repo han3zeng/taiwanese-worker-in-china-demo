@@ -9,12 +9,15 @@ const BackgroundImage = styled.div`
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  background-image: url("${props => props.imgSrc}");
+  background-image: url("${props => props.imgSrcDesktop}");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 6;
+  @media(max-width: 582px) {
+    background-image: url("${props => props.imgSrcMobile}");
+  }
 `
 
 const CatchPhrase = styled.div`
@@ -27,6 +30,7 @@ const CatchPhrase = styled.div`
 const FullScreenImage = memo((props) => {
   const { imgSrc, catchPhrases={} } = props;
   const { one, two } = catchPhrases;
+  const { desktop, mobile } = imgSrc;
   let containerNode = null;
 
   useEffect(() => {
@@ -42,12 +46,13 @@ const FullScreenImage = memo((props) => {
   return (
     <BackgroundImage
       ref={setRef}
-      imgSrc={imgSrc}
+      imgSrcDesktop={desktop}
+      imgSrcMobile={mobile}
     >
-      <CatchPhrase>
+      {one && two && <CatchPhrase>
         <h2>{one}</h2>
         <h2>{two}</h2>
-      </CatchPhrase>
+      </CatchPhrase>}
     </BackgroundImage>
   )
 })
