@@ -8,7 +8,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import People from './components/People.js';
 import Related from './components/Related.js';
 import Footer from './components/Footer';
-
+import smoothscroll from 'smoothscroll-polyfill';
 import {
   relatedData,
   people,
@@ -16,6 +16,8 @@ import {
 } from './editor/text.js';
 import Mask from './components/Mask';
 
+// kick off the polyfill!
+smoothscroll.polyfill();
 
 const Layout = styled.div`
   padding: 0 40px 0 40px;

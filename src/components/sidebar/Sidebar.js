@@ -12,6 +12,7 @@ const _ = {
 
 const Container = styled.div`
   position: relative;
+  z-index: 5;
 `
 
 const AnchorTrack = styled.aside`
