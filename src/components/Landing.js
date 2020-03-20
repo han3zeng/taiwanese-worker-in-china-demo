@@ -153,10 +153,10 @@ const Landing = ({
       }
     }
 
-    window.addEventListener('resize', resizeHandler);
+    // window.addEventListener('resize', resizeHandler);
 
     return () => {
-      window.removeEventListener('resize', resizeHandler);
+      // window.removeEventListener('resize', resizeHandler);
     }
   });
   return (
@@ -166,6 +166,7 @@ const Landing = ({
           autoPlay
           loop
           muted
+          playsInline
           ref={(node) => {
             videoNode = node;
           }}

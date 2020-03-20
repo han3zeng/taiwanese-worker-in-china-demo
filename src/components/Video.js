@@ -225,6 +225,7 @@ class VideoComponent extends PureComponent {
             preload="none"
             poster={poster}
             muted
+            playsInline
           >
             <source
               src={webm}

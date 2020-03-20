@@ -362,38 +362,6 @@ const contentSectionThree = [
       videoTitlle: '台灣中醫師的兒子在北京現況如何？',
     },
   }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: '夫妻倆寧願冒險也要撤回台灣，醫療問題是背後最大的擔憂。',
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: `「最壞的打算是寧願在這邊看醫生。」一年多前赴陸工作的啟祥說，之前有中國同事在回診時，${createHighlight('被醫院告知之前打錯針或開錯藥，讓他對當地的醫療品質缺乏信心，')}「他們都不會覺得離譜，但我們怎麼敢去看。」`,
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: `目前廣告業的妻子是遠距辦公，工作進度受到影響。除了跟客戶提案或開會，沒辦法面對面進行，一天之中的工作時刻表也拉長。雖然只有六到八小時，但公司多數同事都遠距上班，溝通不如在辦公室方便，${createHighlight('有時到晚上十點、十一點都還在處理公事。')}`,
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: `經過討論，太太近期工作告一段落後就會離職，兩人打算在台灣重新開始。`,
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: `啟祥表示，兩年前到中國工作，是想見見世面、開拓眼界，夫妻兩人的薪水也都比在台灣時高，因為疫情要放棄工作回台，難免覺得可惜，${createHighlight('但疫情短期難見好轉，安全還是第一考量。')}`,
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: `復工進入第三週，許多台幹都陸續被「逼工」。啟祥認識的一個餐飲業高階主管，在公司要求下，已在24日回到上海，理由是高管做榜樣、樹立表率，底下員工才會願意跟進。`,
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: `雖然人回去了，公司政策是二月不給薪，三、四月的薪水延遲發，至於何時發薪仍不確定，${('「他知道這不太合理，但又不能做什麼。」')}`,
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
-    content: `相對於年輕族群，在對岸發展已久的台灣人，仍然期待能盡快回去上班。`,
-  }),
 ]
 
 

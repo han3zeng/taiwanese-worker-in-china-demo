@@ -101,8 +101,8 @@ function Sidebar ({
         onLeave={(props) => { onLeaveHandler(moduleId, props) }}
         onEnter={() => { onEnterHandler(moduleId) }}
         fireOnRapidScroll
-        topOffset={(index + 1) === modules.length ? '95%%' : '4%'}
-        bottomOffset={(index + 1) === modules.length ? '4%' : '95%'}
+        topOffset={'4%'}
+        bottomOffset={'95%'}
       >
         <div
           id={moduleId}
