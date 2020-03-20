@@ -41,7 +41,7 @@ const PlaybackContainer = styled.div`
   width: 90%;
   height: 2px;
   transform: translateX(-50%);
-  background-color: #D8D8D8;
+  background-color: #B0B0B0;
 `
 
 const CurrentTime = styled.div`
@@ -49,7 +49,7 @@ const CurrentTime = styled.div`
   bottom: 0;
   left: 0;
   height: 100%;
-  background-color: #909090;
+  background-color: #F0F0F0;
   width: 100%;
   transform: scaleX(0);
   transform-origin: top left;
