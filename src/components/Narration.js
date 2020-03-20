@@ -32,7 +32,7 @@ const Narration = ({ videoSrc, videoInitialization, hasAutoPlay }) => {
   return (
     <NarrationContainer>
       <TitleSection>
-        <HumanIcon />
+        {/*<HumanIcon />*/}
         <Header>{videoTitlle}</Header>
       </TitleSection>
       <Video

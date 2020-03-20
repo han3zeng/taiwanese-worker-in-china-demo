@@ -1,12 +1,16 @@
 import React from 'react';
 import HumanIcon from './HumanIcon';
+import shenzhenIcon from '../assets/shenzhen-icon.svg';
+import shaihaiIcon from '../assets/shaihai-icon.svg';
+import beijingIcon from '../assets/beijing-icon.svg';
+
 import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
+  padding: 36px;
   background-color: #393939;
   position: absolute;
   top: 50%;
@@ -22,7 +26,9 @@ const Container = styled.div`
 const Humans = styled.div`
   display: flex;
   justify-content: center;
-  > div {
+  > img {
+    width: 40px;
+    height: 128px;
     &:nth-child(2) {
       margin: 0 24px;
     }
@@ -56,6 +62,7 @@ const Text = styled.div`
   text-align: center;
   font-size: 22px;
   line-height: 35px;
+  white-space: nowrap;
 `;
 
 
@@ -65,9 +72,9 @@ const MaskContent = ({ onConfirm, onCancel }) => {
   return (
     <Container>
       <Humans>
-        <HumanIcon />
-        <HumanIcon />
-        <HumanIcon />
+        <img src={shenzhenIcon} alt={`person_from_${shenzhenIcon}`} />
+        <img src={shaihaiIcon} alt={`person_from_${shaihaiIcon}`} />
+        <img src={beijingIcon} alt={`person_from_${beijingIcon}`} />
       </Humans>
       <Text>內文包含「台人心內話」影音，<br />是否自動播放？</Text>
       <Buttons>

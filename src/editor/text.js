@@ -146,10 +146,6 @@ const contentSectionOne = [
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: '深圳在2月8日實施社區封閉式管理，小區之間禁止出入，嚴格盤查檢測居民體溫，熟諳品管原則的均豪說，這些都不足以讓他安心。',
-  }),
-  generateContentBlock({
-    type: blockTypes.paragraph,
     content: `「我們這行都知道，良率不是檢查出來、而是做出來的，得病的你檢查出來有什麼用？」${createHighlight('不信任官方防疫作法，是他持續觀望的原因。')}`,
   }),
   generateContentBlock({
@@ -284,7 +280,7 @@ const contentSectionTwo = [
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: `復工進入第三週，許多台幹都陸續被「逼工」。啟祥認識的一個餐飲業高階主管，在公司要求下，已在24日回到上海，理由是高管做榜樣、樹立表率，底下員工才會願意跟進。`,
+    content: `復工進入第三週，許多台幹都陸續被「逼工」。啟祥認識的一個餐飲業高階主管，在公司要求下，已在2月24日回到上海，理由是高管做榜樣、樹立表率，底下員工才會願意跟進。`,
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
@@ -323,7 +319,7 @@ const contentSectionThree = [
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: '2005年考取中國中醫師執照的他，今年從醫屆滿十年，他的中醫執業證，在北京豐臺區是TW編號的第一號，如今因為不孕症門診小有名氣，在北京市六醫院等五家醫療院所都有設診。',
+    content: '2005年考取中國中醫師執照的他，今年從醫屆滿十年，他的中醫執業證，在北京豐臺區是TW編號的第一號，如今因不孕症門診小有名氣，在北京市六醫院等五家醫療院所都有設診。',
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
