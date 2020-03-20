@@ -2,6 +2,7 @@ import React, { useEffect, memo } from 'react';
 import styled from 'styled-components';
 import ptsIconSrc from '../assets/pts_logo_top_left.svg';
 import { FacebookShare, LineShare } from './ShareButtons';
+import { throttle } from '../utils/index.js';
 
 const height = '80px';
 
@@ -32,6 +33,7 @@ const Navbar = memo(() => {
   let userScrollDown = null;
   let previousScrollY = null;
   let containerNode = null;
+  let triggerTime = 0;
   const setContainerRef = (node) => {
     containerNode = node;
   }
@@ -48,9 +50,10 @@ const Navbar = memo(() => {
         containerNode.style.transform = `translateY(0)`;
       }
     }
-    document.addEventListener('scroll', trackScrollMovement);
+    const throttledTrackScrollMovementthrottle = throttle(trackScrollMovement, 300);
+    document.addEventListener('scroll', throttledTrackScrollMovementthrottle);
     return () => {
-      document.removeEventListener('scroll', trackScrollMovement);
+      document.removeEventListener('scroll', throttledTrackScrollMovementthrottle);
     }
   });
 

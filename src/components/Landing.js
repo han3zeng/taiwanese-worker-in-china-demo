@@ -19,7 +19,6 @@ const VideoWrapper = styled.div`
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  height: 100vh;
   > video {
     width: 100%;
     height: 100%;
@@ -107,6 +106,7 @@ const Landing = ({
   hasAutoPlay,
   videoInitialization,
 }) => {
+  let videoWrapperNode = null;
   let videoNode = null;
   let articleNode = null;
   let webmSrc = chooseSrc({
@@ -153,6 +153,9 @@ const Landing = ({
       }
     }
 
+    if (window && videoWrapperNode) {
+      videoWrapperNode.style.height = `${window.innerHeight}px`;
+    }
     // window.addEventListener('resize', resizeHandler);
 
     return () => {
@@ -161,7 +164,11 @@ const Landing = ({
   });
   return (
     <Container>
-      <VideoWrapper>
+      <VideoWrapper
+        ref={(node) => {
+          videoWrapperNode = node;
+        }}
+      >
         <video
           autoPlay
           loop

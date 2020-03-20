@@ -10,7 +10,6 @@ const BackgroundImage = styled.div`
   margin-left: -50vw;
   margin-right: -50vw;
   background-image: url("${props => props.imgSrcDesktop}");
-  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,7 +33,9 @@ const FullScreenImage = memo((props) => {
   let containerNode = null;
 
   useEffect(() => {
-
+    if (window && containerNode) {
+      containerNode.style.height = `${window.innerHeight}px`;
+    }
   });
 
   function setRef(node) {
@@ -48,6 +49,9 @@ const FullScreenImage = memo((props) => {
       ref={setRef}
       imgSrcDesktop={desktop}
       imgSrcMobile={mobile}
+      ref={(node) => {
+        containerNode = node;
+      }}
     >
       {one && two && <CatchPhrase>
         <h2>{one}</h2>
