@@ -198,7 +198,7 @@ const contentSectionOne = [
     videoSrc: {
       mp4: `${cdnUrlBase}/shenzhen-work.mp4`,
       webm: `${cdnUrlBase}/shenzhen-work.webm`,
-      poster: `${cdnUrlBase}/shenzhen-work-cover.jpg`,
+      poster: `${cdnUrlBase}/shenzhen-cover.jpg`,
       videoTitlle: '深圳台幹如何跟中企老闆協商？',
     },
   }),
@@ -284,7 +284,7 @@ const contentSectionTwo = [
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: `雖然人回去了，公司政策是二月不給薪，三、四月的薪水延遲發，至於何時發薪仍不確定，${('「他知道這不太合理，但又不能做什麼。」')}`,
+    content: `雖然人回去了，公司政策是二月不給薪，三、四月的薪水延遲發，至於何時發薪仍不確定，${createHighlight('「他知道這不太合理，但又不能做什麼。」')}`,
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
@@ -323,15 +323,15 @@ const contentSectionThree = [
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: `北京2月9日發布實施社區管理，消息一出，人已回台灣過年的謝茂源，不停聽到微信訊息聲咚咚作響。${('許多中醫診所陸續暫停門診，至今不確定何時恢復')}，他和太太兩個人目前先留在台灣，等待開工。`,
+    content: `北京2月9日發布實施社區管理，消息一出，人已回台灣過年的謝茂源，不停聽到微信訊息聲咚咚作響。${createHighlight('許多中醫診所陸續暫停門診，至今不確定何時恢復')}，他和太太兩個人目前先留在台灣，等待開工。`,
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: `由於中國不少中醫診所是零底薪，收入以掛號費為主，${('這波停業，讓他收入驟減。')}`,
+    content: `由於中國不少中醫診所是零底薪，收入以掛號費為主，${createHighlight('這波停業，讓他收入驟減。')}`,
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: `謝茂源一次掛號費是人民幣100元（約新台幣420元），要價不斐。即使如此，一診平均仍有30到40個病人，${('一天不看診就至少損失6000元人民幣（約新台幣2萬5千元）')}。「損失大了呀。」謝茂源嘆道。`,
+    content: `謝茂源一次掛號費是人民幣100元（約新台幣420元），要價不斐。即使如此，一診平均仍有30到40個病人，${createHighlight('一天不看診就至少損失6000元人民幣（約新台幣2萬5千元）')}。「損失大了呀。」謝茂源嘆道。`,
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
@@ -347,7 +347,7 @@ const contentSectionThree = [
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: `子孫根留北京，謝茂源一則以喜、一則以憂。事實上，謝茂源的兒子過年期間從未踏出北京，${('因為正巧轉到醫院急診科接受培訓，幾乎是疫情爆發之際的第一線人員，')}但他卻不急著離開，想留守急診科繼續服務。`,
+    content: `子孫根留北京，謝茂源一則以喜、一則以憂。事實上，謝茂源的兒子過年期間從未踏出北京，${createHighlight('因為正巧轉到醫院急診科接受培訓，幾乎是疫情爆發之際的第一線人員，')}但他卻不急著離開，想留守急診科繼續服務。`,
   }),
   generateContentBlock({
     type: blockTypes.narration,
