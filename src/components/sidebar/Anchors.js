@@ -10,7 +10,7 @@ const _ = {
 const Conatiner = styled.div`
   position: sticky;
   z-index: 5;
-  padding-bottom: 30px;
+  padding-bottom: 90px;
   bottom: 30px;
 `;
 

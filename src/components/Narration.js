@@ -19,7 +19,7 @@ const TitleSection = styled.div`
 const Header = styled.div`
   font-weight: 500;
   font-size: 22px;
-  line-height: 22px;
+  line-height: 27px;
 `;
 
 const NarrationContainer = styled.div`
@@ -28,11 +28,12 @@ const NarrationContainer = styled.div`
 `;
 
 const Narration = ({ videoSrc, videoInitialization, hasAutoPlay }) => {
+  const { videoTitlle } = videoSrc;
   return (
     <NarrationContainer>
       <TitleSection>
         <HumanIcon />
-        <Header>台人內心話</Header>
+        <Header>{videoTitlle}</Header>
       </TitleSection>
       <Video
         videoSrc={videoSrc}

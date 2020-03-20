@@ -3,7 +3,6 @@ import styled, { css, keyframes } from 'styled-components';
 import SectionPrototype from './sections/SectionPrototype';
 import { contentLandingSection } from '../editor/text';
 import { setup } from '../config/config';
-import poster from '../assets/poster.png';
 import ArrowIcon from '../assets/header_scroll_arrow.svg';
 import Video from './Video';
 import { chooseSrc } from '../utils';

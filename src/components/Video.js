@@ -152,8 +152,8 @@ class VideoComponent extends PureComponent {
 
   _onLeaveHandler(e) {
     this._onEnterTime = 0;
-    const { hasAutoPlay } = this.props;
-    if (hasAutoPlay) {
+    const { isPlaying } = this.state;
+    if (isPlaying) {
       this._videoHandler({
         isPlaying: false,
       })
