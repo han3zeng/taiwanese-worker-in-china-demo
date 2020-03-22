@@ -28,7 +28,7 @@ const AnchorWrapper = styled.div`
 `;
 
 const AnchorMask = styled.div`
-  width: 90px;
+  width: 55px;
   overflow: hidden;
   display: flex;
   justify-content: flex-end;

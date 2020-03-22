@@ -72,6 +72,9 @@ const PlaybackContainer = styled.div`
   height: 2px;
   transform: translateX(-50%);
   background-color: #B0B0B0;
+  @media(max-width: 414px) {
+    bottom: 16px;
+  }
 `
 
 const CurrentTime = styled.div`
