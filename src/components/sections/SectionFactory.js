@@ -1,4 +1,4 @@
-import React, { memo, Fragment } from 'react';
+import React from 'react';
 import SectionPrototype from './SectionPrototype';
 import { contentSections } from '../../editor/text';
 

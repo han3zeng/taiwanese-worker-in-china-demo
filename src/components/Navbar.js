@@ -33,7 +33,6 @@ const Navbar = memo(() => {
   let userScrollDown = null;
   let previousScrollY = null;
   let containerNode = null;
-  let triggerTime = 0;
   const setContainerRef = (node) => {
     containerNode = node;
   }

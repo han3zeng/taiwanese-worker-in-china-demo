@@ -1,5 +1,4 @@
 import React from 'react';
-import HumanIcon from './HumanIcon';
 import shenzhenIcon from '../assets/shenzhen-icon.svg';
 import shaihaiIcon from '../assets/shaihai-icon.svg';
 import beijingIcon from '../assets/beijing-icon.svg';

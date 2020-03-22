@@ -1,4 +1,4 @@
-import React, { useEffect, memo, Fragment } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { blockTypes } from '../../editor/text';
 import FullScreenImage from '../FullScreenImage';
@@ -15,7 +15,6 @@ const SectionPrototype = memo(({ data, hasAutoPlay, videoInitialization, forward
   }
   const Content = data.map((block, index) => {
     const {
-      type,
       content,
       backgroundImageSrc,
       bgCatchPhrases,

@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import HumanIcon from './HumanIcon';
 import Video from './Video';
 
 const TitleSection = styled.div`
@@ -32,7 +31,6 @@ const Narration = ({ videoSrc, videoInitialization, hasAutoPlay }) => {
   return (
     <NarrationContainer>
       <TitleSection>
-        {/*<HumanIcon />*/}
         <Header>{videoTitlle}</Header>
       </TitleSection>
       <Video
