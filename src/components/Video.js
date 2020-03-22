@@ -1,23 +1,53 @@
 import React, {  PureComponent } from 'react';
 import styled from 'styled-components';
-import PlayIconSrc from '../assets/play.png';
-import PauseIconSrc from '../assets/pause.png';
-import { Waypoint } from 'react-waypoint'
+import PlayIconSrc from '../assets/play.svg';
+import { Waypoint } from 'react-waypoint';
 
 const VideoContainer = styled.div`
   position: relative;
   cursor: pointer;
 `
 
+const VideoMaskTop = styled.div`
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  background-color: #393939;
+  top: 0;
+  left: 0;
+`;
+
+const VideoMaskBottom = styled.div`
+  height: 7px;
+  width: 100%;
+  position: absolute;
+  background-color: #393939;
+  bottom: 0;
+  left: 0;
+`;
+
+
 const Video = styled.video`
   width: 100%;
 `
 
+const Control = styled.div`
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  > img {
+    position: absolute;
+    left: 0;
+    bottom: 45px;
+    height: 54px;
+    width: 54px;
+  }
+`;
+
 const ButtonContainer = styled.div`
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  bottom: 30px;
   height: 54px;
   width: 54px;
   border-radius: 50%;
@@ -38,7 +68,7 @@ const PlaybackContainer = styled.div`
   position: absolute;
   bottom: 20px;
   left: 50%;
-  width: 90%;
+  width: 100%;
   height: 2px;
   transform: translateX(-50%);
   background-color: #B0B0B0;
@@ -218,6 +248,7 @@ class VideoComponent extends PureComponent {
         <VideoContainer
           onClick={this.onClickVideoHandler}
         >
+          <VideoMaskTop />
           <Video
             ref={(node) => {
               this.video = node;
@@ -237,18 +268,17 @@ class VideoComponent extends PureComponent {
             />
             Your browser does not support the video tag
           </Video>
-          {!isPlaying && (
-            <ButtonContainer
-            >
-              <div>
-              </div>
-            </ButtonContainer>
-          )}
-          <Playback
-            ref={(node) => {
-              this.playback = node;
-            }}
-          />
+          <Control>
+            <VideoMaskBottom />
+            {!isPlaying && (
+              <img src={PlayIconSrc} alt={`video_button_${videoSrc}`}/>
+            )}
+            <Playback
+              ref={(node) => {
+                this.playback = node;
+              }}
+            />
+          </Control>
         </VideoContainer>
       </Waypoint>
     );
