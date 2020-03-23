@@ -231,7 +231,7 @@ const contentSectionTwo = [
   }),
   generateContentBlock({
     type: blockTypes.headerThree,
-    content: '寧被隔離也要撤  台幹夫妻三天兩夜快閃搬家',
+    content: '寧被關兩週也要撤  台幹夫妻三天兩夜快閃搬家',
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
@@ -239,7 +239,7 @@ const contentSectionTwo = [
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
-    content: `${createHighlight('「因為安全問題，就不考慮回去了。」')}電話那頭38歲的啟祥（化名），2月25日終於踏出商旅房門，結束為期14天的居家隔離。`,
+    content: `${createHighlight('「因為安全問題，就不考慮回去了。」')}電話那頭38歲的啟祥（化名），2月25日終於踏出商旅房門，結束為期14天的居家檢疫。`,
   }),
   generateContentBlock({
     type: blockTypes.paragraph,
