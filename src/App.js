@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Navbar from './components/Navbar';
 import { breakPoints } from './config/config';
@@ -177,4 +177,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);

@@ -1,21 +1,24 @@
 import React, { useEffect, memo } from 'react';
 import styled from 'styled-components';
 
-
-const BackgroundImage = styled.div`
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  background-image: url("${props => props.imgSrcDesktop}");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 6;
-  @media(max-width: 582px) {
-    background-image: url("${props => props.imgSrcMobile}");
+const Container = styled.div`
+  .visible {
+    background-image: url("${props => props.imgSrcDesktop}");
+    @media(max-width: 582px) {
+      background-image: url("${props => props.imgSrcMobile}");
+    }
+  }
+  .lazyBackground {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 6;
   }
 `
 
@@ -45,19 +48,20 @@ const FullScreenImage = memo((props) => {
   }
 
   return (
-    <BackgroundImage
-      ref={setRef}
+    <Container
       imgSrcDesktop={desktop}
       imgSrcMobile={mobile}
-      ref={(node) => {
-        containerNode = node;
-      }}
     >
-      {one && two && <CatchPhrase>
-        <h2>{one}</h2>
-        <h2>{two}</h2>
-      </CatchPhrase>}
-    </BackgroundImage>
+      <div
+        ref={setRef}
+        className="lazyBackground"
+      >
+        {one && two && <CatchPhrase>
+          <h2>{one}</h2>
+          <h2>{two}</h2>
+        </CatchPhrase>}
+      </div>
+    </Container>
   )
 })
 

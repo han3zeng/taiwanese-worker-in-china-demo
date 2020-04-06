@@ -106,7 +106,11 @@ const Related = ({ data, title }) => {
           rel="noopener noreferrer"
         >
           <ImgWrapper>
-            <img src={imgUrl} alt={GridTitle} />
+            <img
+              className="lazy"
+              data-src={imgUrl}
+              alt={GridTitle}
+            />
           </ImgWrapper>
           <TextWrapper>
             <Category>{category}</Category>
