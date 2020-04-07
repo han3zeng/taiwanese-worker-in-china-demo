@@ -402,7 +402,7 @@ const relatedData = [{
     title: '武漢封城30天，全中國開城復工待何時？',
     date: '2020/02/21',
     category: '全球公衛',
-    imgUrl: 'http://newmedia.pts.org.tw/sub-chinaoutbreak/figure.jpg',
+    imgUrl: 'https://newmedia.pts.org.tw/sub-chinaoutbreak/figure.jpg',
     externalLink: 'https://newmedia.pts.org.tw/sub-chinaoutbreak/',
   },
   {
